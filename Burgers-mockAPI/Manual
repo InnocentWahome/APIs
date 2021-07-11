@@ -1,0 +1,16 @@
+--Created and Added content to the db.json which is our database
+
+npm install json-server -g     ---not sure why 
+
+json-server --watch db.json ---starting the json server and telling it our database path
+
+touch server.js -- where we house the logic
+
+npm init -y && npm install json-server && in scripts "start": "node server.js"  --to start the server in realtime
+for the backend
+
+login to heroku
+
+run 'heroku create your-api-name' to create an instance/app for heroku where we will host the api
+
+git push heroku main --push and build the heroku api && heroku open to open the url for the api
