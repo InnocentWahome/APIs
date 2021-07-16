@@ -1,0 +1,27 @@
+[
+    {
+        "id":"1",
+        "name":"rick",
+        "email":"rick@gmail.com"
+    },
+    {
+        "id":"2",
+        "name":"asap",
+        "email":"asap@gmail.com"
+    },
+    {
+        "id":"3",
+        "name":"guru",
+        "email":"guru@gmail.com"
+    },
+    {
+        "id":"4",
+        "name":"unagi",
+        "email":"unagi@gmail.com"
+    },
+    {
+        "id":"5",
+        "name":"rachel",
+        "email":"rachel@gmail.com"
+    }
+]

@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Title</title>
+</head>
+
+<body>
+    <div class="container-fluid mt-3">
+     <!-- Searching for the user and displaying them -->
+            <div class="container">
+                <form action="" autocomplete="off" id="myForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="search" placeholder="Search Github Repository">
+                    </div>
+                    <div class="row">
+                    <div class="form-group text-center col">
+                        <button class="btn btn-success btn-block"> Search User Repository </button>
+                    </div>
+
+                </div>
+                </form>
+                <!-- result for the search -->
+                <div class="container">
+                    <div id="result" class="text-center"></div>
+                </div>
+            </div>
+            <br><br><br>
+  <!-- The table -->
+            <div class="container">
+                <h2 style="text-align: center;">Search Return Data</h2>
+        
+            <table class="table table-stripped">
+                <thead>
+                    <tr>
+                        <th>Repo Id</th>
+                        <th>Repo Name</th>
+                        <th>Open Issues</th>
+                        <th>Link</th>
+                        <th>Created</th>
+                        <th>Last Updated</th>
+                        
+                    </tr>
+                </thead>
+                <tbody id="singleData"></tbody>
+            </table>
+
+            <br><br><br>
+
+    <script>
+        // --------------display user on search
+const form = document.getElementById('myForm');
+form.addEventListener('submit', function(e){
+    e.preventDefault()
+    var search = document.getElementById('search').value;
+    //removing spaces in the name typed
+    var repoName = search.split(' ').join('')
+    document.getElementById('result').innerHTML = '';
+     fetch("https://api.github.com/repos/InnocentWahome/"+repoName)
+     .then((result) => result.json())
+     .then((data) => {
+        console.log(data)
+        
+        document.getElementById('singleData').innerHTML = `
+        <tr>
+        <td>${data.id}</td> 
+        <td>${data.name}</td> 
+        <td>${data.open_issues_count}</td> 
+        <td><a href=${'https://github.com/'}>${data.clone_url}</a></td> 
+        <td>${data.created_at}</td> 
+        <td>${data.updated_at}</td> 
+        </tr>
+        `
+    })})
+
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

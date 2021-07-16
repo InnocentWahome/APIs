@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>Title</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row" style="margin-top: 50px">
+            <div class="col-md-12 col-md-offset-3">
+                <table class="table table-bordered">
+                    <thead>
+                        <th>Repo Id</th>
+                        <th>Repo Name</th>
+                        <th>Open Issues</th>
+                        <th>Link</th>
+                        <th>Created</th>
+                        <th>Last Updated</th>
+                    </thead>
+                    <tbody class="tbody" id="data">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        fetch('https://api.github.com/users/InnocentWahome/repos')
+        .then(res => {
+            res.json().then(
+                data=>{
+                    console.log(data)
+                    if(data.length > 0){
+                        var temp = "";
+                        // start for loop
+                        data.forEach((u) => {
+                            temp += "<tr>";
+                            temp += "<td>"+u.id+"</td>";
+                            temp += "<td>"+u.name+"</td>";
+                            temp += "<td>"+u.open_issues_count+"</td>";
+                            temp += "<td><a href=${'https://github.com/'}>"+u.clone_url+"</a></td>";
+                            temp += "<td>"+u.created_at+"</td>";
+                            temp += "<td>"+u.updated_at+"</td></tr>";
+
+                        })
+                        //end for loop
+                        document.getElementById("data").innerHTML = temp
+                    }
+                }
+            )
+        })
+    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/js/bootstrap.min.js"></script>
+</body>
+</html>
